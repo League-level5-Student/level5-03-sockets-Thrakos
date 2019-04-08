@@ -11,7 +11,7 @@ public class ButtonClicker extends JFrame {
 	JButton button = new JButton("CLICK");
 	
 	Server server;
-	Client client;
+	Client client; 
 	
 	
 	public static void main(String[] args) {
