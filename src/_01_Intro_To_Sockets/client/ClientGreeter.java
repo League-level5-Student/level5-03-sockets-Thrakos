@@ -31,15 +31,17 @@ public class ClientGreeter {
     	  	DataOutputStream dos = new DataOutputStream(socket.getOutputStream());
     	  	
          //6. Use the DataOutputStream object to send a message to the server using the writeUTF(String message) method
-        dos.writeUTF("message"); 
+    	  	String string = JOptionPane.showInputDialog("type: ");
+        dos.writeUTF(string); 
     	  	
          //7. Create a DataInputStream object. When initializing it, use the Server object you created in step 4 to call the getInputStream() method.
         DataInputStream dis = new DataInputStream(socket.getInputStream()); 
         
          //8. Use the DataInputStream object to print a message from the server using the readUTF() method.
-        
+        JOptionPane.showMessageDialog(null, dis.readUTF());
         
          //9. Close the client's server object
+        socket.close();
       } catch (IOException e) {
     	  	
       }
