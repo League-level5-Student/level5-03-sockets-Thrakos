@@ -35,6 +35,8 @@ public class ButtonClicker extends JFrame {
 			setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 			server.start();
 			
+			System.out.println("WOPEIFJOIJWE");
+			
 		}else{
 			setTitle("CLIENT");
 			String ipStr = JOptionPane.showInputDialog("Enter the IP Address");

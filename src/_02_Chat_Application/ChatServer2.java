@@ -36,7 +36,12 @@ public class ChatServer2 {
 			os.flush();
 			
 			while (connection.isConnected()) {
-				
+				try {
+					String message = (String) is.readObject();
+					
+				} catch (ClassNotFoundException e) {
+					e.printStackTrace();
+				}
 			}
 			
 		} catch (IOException e) {

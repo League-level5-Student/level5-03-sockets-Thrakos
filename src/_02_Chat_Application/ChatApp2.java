@@ -39,6 +39,7 @@ public class ChatApp2 {
 		int response = JOptionPane.showConfirmDialog(null, "Would you like to host a connection?", "Buttons!", JOptionPane.YES_NO_OPTION);
 		
 		if(response == JOptionPane.YES_OPTION) {
+			
 			server = new ChatServer2(8080);
 			frame.setTitle("SERVER");
 			JOptionPane.showMessageDialog(null, "ip: " + server.getIPAddress() + ", port: " + server.getPort());
@@ -46,22 +47,25 @@ public class ChatApp2 {
 				String thing = textField.getText();
 				textField.setText("");
 				messages = messages + "\n YOU: " + thing;
-		//		server.sendText(thing);
+				server.sendText(thing);
 			});
 			server.start();
+			
 		} else {
+			
 			frame.setTitle("CLIENT");
 			String ipStr = JOptionPane.showInputDialog("Enter the IP Address");
 			String prtStr = JOptionPane.showInputDialog("Enter the port number");
 			int port = Integer.parseInt(prtStr);
-		//	client = new ChatClient2(ipStr, port);
+			client = new ChatClient2(ipStr, port);
 			button.addActionListener((e) -> {
 				String thing = textField.getText();
 				textField.setText("");
 				messages = messages + "\n YOU: " + thing;
-		//		client.sendText(thing);
+				client.sendText(thing);
 			});
-		//	client.start();
+			client.start();
+			
 		}
 		
 	}
