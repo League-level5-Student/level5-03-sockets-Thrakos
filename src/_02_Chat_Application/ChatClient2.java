@@ -6,6 +6,8 @@ import java.io.ObjectOutputStream;
 import java.net.Socket;
 import java.net.UnknownHostException;
 
+import javax.swing.JLabel;
+
 public class ChatClient2 {
 
 	private String ip;
@@ -16,9 +18,12 @@ public class ChatClient2 {
 	ObjectOutputStream os;
 	ObjectInputStream is;
 	
-	public ChatClient2(String ip, int port) {
+	JLabel label;
+	
+	public ChatClient2(String ip, int port, JLabel label) {
 		this.ip = ip;
 		this.port = port;
+		this.label = label;
 	}
 	
 	public void start() {
@@ -34,6 +39,14 @@ public class ChatClient2 {
 			
 			while (connection.isConnected()) {
 				
+				try {
+					
+					String prev = label.getText();
+					label.setText(prev + "Somebody Else: " + is.readObject());
+					
+				} catch (ClassNotFoundException e) {
+					e.printStackTrace();
+				}
 			}
 			
 		} catch (UnknownHostException e) {

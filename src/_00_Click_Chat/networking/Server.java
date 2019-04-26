@@ -37,8 +37,9 @@ public class Server {
 
 			while (connection.isConnected()) {
 				try {
-					JOptionPane.showMessageDialog(null, is.readObject());
-					System.out.println(is.readObject());
+					String thing = (String) is.readObject();
+					JOptionPane.showMessageDialog(null, /*is.readObject()*/ thing);
+					System.out.println(/*is.readObject()*/ thing);
 				}catch(EOFException e) {
 					JOptionPane.showMessageDialog(null, "Connection Lost");
 					System.exit(0);

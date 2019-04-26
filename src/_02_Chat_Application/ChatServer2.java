@@ -8,6 +8,8 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.net.UnknownHostException;
 
+import javax.swing.JLabel;
+
 public class ChatServer2 {
 
 	private int port;
@@ -18,8 +20,11 @@ public class ChatServer2 {
 	ObjectOutputStream os;
 	ObjectInputStream is;
 	
-	public ChatServer2(int port) {
+	JLabel label;
+	
+	public ChatServer2(int port, JLabel label) {
 		this.port = port;
+		this.label = label;
 	}
 	
 	public void start() {
