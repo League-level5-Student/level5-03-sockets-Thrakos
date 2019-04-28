@@ -40,8 +40,9 @@ public class ChatApp2 {
 		
 		if(response == JOptionPane.YES_OPTION) {
 			
-			server = new ChatServer2(8080, label);
-			frame.setTitle("SERVER");
+			String name = JOptionPane.showInputDialog("Who are you?");
+			server = new ChatServer2(8080, label, name);
+			frame.setTitle(name);
 			JOptionPane.showMessageDialog(null, "ip: " + server.getIPAddress() + ", port: " + server.getPort());
 			button.addActionListener((e) -> {
 				String thing = textField.getText();
@@ -51,12 +52,13 @@ public class ChatApp2 {
 			server.start();
 			
 		} else {
-			
-			frame.setTitle("CLIENT");
+
 			String ipStr = JOptionPane.showInputDialog("Enter the IP Address");
 			String prtStr = JOptionPane.showInputDialog("Enter the port number");
+			String name = JOptionPane.showInputDialog("Who are you?");
+			frame.setTitle(name);
 			int port = Integer.parseInt(prtStr);
-			client = new ChatClient2(ipStr, port, label);
+			client = new ChatClient2(ipStr, port, label, name);
 			button.addActionListener((e) -> {
 				String thing = textField.getText();
 				textField.setText("");
