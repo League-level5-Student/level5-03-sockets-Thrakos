@@ -7,6 +7,7 @@ import java.net.Socket;
 import java.net.UnknownHostException;
 
 import javax.swing.JLabel;
+import javax.swing.JTextArea;
 
 public class ChatClient2 {
 
@@ -18,14 +19,15 @@ public class ChatClient2 {
 	ObjectOutputStream os;
 	ObjectInputStream is;
 
-	JLabel label;
+	//JLabel label;
+	JTextArea label;
 	
 	String chatLog = "";
 	
 	String name;
 	String other;
 
-	public ChatClient2(String ip, int port, JLabel label, String name) {
+	public ChatClient2(String ip, int port, /*JLabel*/ JTextArea label, String name) {
 		this.ip = ip;
 		this.port = port;
 		this.label = label;
@@ -56,9 +58,10 @@ public class ChatClient2 {
 				try {
 
 					String receive = (String) is.readObject();
-					chatLog += other + ": " + receive + "<br>";
-//					String prev = label.getText();
-					label.setText("<html>" + chatLog + "</html>");
+//					chatLog += other + ": " + receive + "<br>";
+					chatLog += other + ": " + receive + "\n";
+//					label.setText("<html>" + chatLog + "</html>");
+					label.setText(chatLog);
 
 				} catch (ClassNotFoundException e) {
 					e.printStackTrace();
@@ -77,9 +80,10 @@ public class ChatClient2 {
 		try {
 			if (!text.trim().equals("")) {
 				os.writeObject(text);
-				chatLog += name + ": " + text + "<br>";
-//				String prev = label.getText();
-				label.setText("<html>" + chatLog + "</html>");
+//				chatLog += name + ": " + text + "<br>";
+				chatLog += name + ": " + text + "\n";
+//				label.setText("<html>" + chatLog + "</html>");
+				label.setText(chatLog);
 			}
 		} catch (IOException e) {
 			e.printStackTrace();

@@ -5,6 +5,8 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
 import _00_Click_Chat.networking.Server;
@@ -13,9 +15,14 @@ public class ChatApp2 {
 	
 	JFrame frame = new JFrame();
 	JPanel panel = new JPanel();
-	JLabel label = new JLabel();
+	//JLabel label = new JLabel();
+	
+	JTextArea textArea = new JTextArea(30, 100);
+	
 	JTextField textField = new JTextField(25);
 	JButton button = new JButton();
+	
+	JScrollPane scroll = new JScrollPane(textArea);
 	
 	String messages = "";
 
@@ -28,8 +35,9 @@ public class ChatApp2 {
 	
 	public ChatApp2() {
 		
+		textArea.setEditable(false);
 		frame.add(panel);
-		panel.add(label);
+		panel.add(/*label*/ scroll);
 		panel.add(textField);
 		button.setText("SEND");
 		panel.add(button);
@@ -41,7 +49,7 @@ public class ChatApp2 {
 		if(response == JOptionPane.YES_OPTION) {
 			
 			String name = JOptionPane.showInputDialog("Who are you?");
-			server = new ChatServer2(8080, label, name);
+			server = new ChatServer2(8080, /*label*/ textArea, name);
 			frame.setTitle(name);
 			JOptionPane.showMessageDialog(null, "ip: " + server.getIPAddress() + ", port: " + server.getPort());
 			button.addActionListener((e) -> {
@@ -58,7 +66,7 @@ public class ChatApp2 {
 			String name = JOptionPane.showInputDialog("Who are you?");
 			frame.setTitle(name);
 			int port = Integer.parseInt(prtStr);
-			client = new ChatClient2(ipStr, port, label, name);
+			client = new ChatClient2(ipStr, port, /*label*/ textArea, name);
 			button.addActionListener((e) -> {
 				String thing = textField.getText();
 				textField.setText("");
